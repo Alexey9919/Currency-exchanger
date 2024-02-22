@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/currency-rate-service-copy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/currency-rate-service-copy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/currency-rate-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing-service-copy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing-service-copy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/dto" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/repository" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-processing/src/main/java/ru/zagrebin/processing/exchangeprocessing/service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-service-copy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-service/src/main/java" charset="UTF-8" />
+  </component>
+</project>

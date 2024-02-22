@@ -1,0 +1,47 @@
+server:
+  port: 8090
+
+cloud:
+  db-host: localhost
+  eureka-host: localhost
+  currency-url: http://localhost:8085
+
+
+spring:
+  application:
+    name: exchange-processing-service
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://${cloud.db-host}:8095/processing_db
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    locations: classpath:db
+    url: jdbc:postgresql://${cloud.db-host}:8095/processing_db
+    user: postgres
+    password: postgres
+
+
+service:
+  currency:
+    url: ${cloud.currency-url}
+
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: http://${cloud.eureka-host}:8761/eureka
+
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
