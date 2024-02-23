@@ -1,5 +1,6 @@
 package ru.zagrebin.processing.exchangeprocessing.service;
 
+import jdk.dynalink.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -11,9 +12,9 @@ import ru.zagrebin.processing.exchangeprocessing.model.AccountEntity;
 import ru.zagrebin.processing.exchangeprocessing.repository.AccountRepository;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +22,17 @@ public class AccountService {
 
     public final AccountRepository accountRepository;
 
+    public final ResolveUserService userService;
 
     private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     public AccountEntity createNewAccount(NewAccountDTO dto) {
+        var userId = userService.resolveUserId();
 
         var account = new AccountEntity();
         account.setCurrencyCode(dto.getCurrencyCode());
-        account.setUserId(dto.getUserId());
+        account.setUserId(userId);
         account.setBalance(new BigDecimal(0));
 
         var created = accountRepository.save(account);
@@ -43,6 +46,7 @@ public class AccountService {
             var balance = acc.getBalance().add(money);
             acc.setBalance(balance);
 
+
             return accountRepository.save(acc);
         }).orElseThrow(() -> new IllegalArgumentException("Account with ID " + accountId + " not found"));
         return result;
@@ -52,7 +56,8 @@ public class AccountService {
         return accountRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Account with ID " + id + " not found"));
     }
 
-    public List<AccountEntity> getAllAccount(Long userId) {
+    public List<AccountEntity> getAllAccount() {
+        var userId = userService.resolveUserId();
         return accountRepository.findByUserId(userId);
     }
 }

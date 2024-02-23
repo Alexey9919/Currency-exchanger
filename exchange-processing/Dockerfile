@@ -4,7 +4,8 @@ ADD target/*.jar app.jar
 ENV DB_HOST=localhost
 ENV EUREKA_HOST=localhost
 ENV CURRENCY_URL="http://localhost:8085"
-
+ENV AUTH_TOKEN_URL="http://localhost:9000/oauth/check_token"
+ENV USER_INFO_URL="http://localhost:9000/user"
 
 EXPOSE 8090
 
@@ -13,4 +14,5 @@ ENTRYPOINT [ "sh", "-c", "java \
     -jar /app.jar \
     --cloud.db-host=$DB_HOST \
     --cloud.eureka-host=$EUREKA_HOST --cloud.currency-url=$CURRENCY_URL \
+    --cloud.auth-token-url=$AUTH_TOKEN_URL --cloud.user-info-url=$USER_INFO_URL \
     " ]

@@ -36,8 +36,8 @@ public class ProcessingController {
         return exchangeService.exchangeCurrency(uid, data.getFromAccountId(), data.getToAccountId(), data.getMoney());
     }
 
-    @GetMapping("/accounts/{user}")
-    public List<AccountEntity> getAllAccount(@PathVariable("user") Long user) {
-        return accountService.getAllAccount(user);
+    @GetMapping("/accounts")
+    public List<AccountEntity> getAllAccount() {
+        return accountService.getAllAccount();
     }
 }

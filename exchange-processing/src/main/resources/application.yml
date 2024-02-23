@@ -5,6 +5,8 @@ cloud:
   db-host: localhost
   eureka-host: localhost
   currency-url: http://localhost:8085
+  auth-token-url: http://localhost:9000/oauth/check_token
+  user-info-url: http://localhost:9000/user
 
 
 spring:
@@ -39,6 +41,16 @@ eureka:
     enabled: false
     serviceUrl:
       defaultZone: http://${cloud.eureka-host}:8761/eureka
+
+
+security:
+  oauth2:
+    resource:
+      token-info-uri: ${cloud.auth-token-url}
+      user-info-uri: ${cloud.user-info-url}
+    client:
+      client-id: processing
+      client-secret: processing123
 
 
 
