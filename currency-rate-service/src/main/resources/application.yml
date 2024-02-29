@@ -8,12 +8,12 @@ spring:
   application:
     name: currency-rate-service
 
-currency:
-  client:
-    url: "http://cbr.ru/scripts/XML_daily.asp"
-
 eureka:
   client:
     enabled: false
     serviceUrl:
       defaultZone: http://${cloud.eureka-host}:8761/eureka
+
+currency:
+  client:
+    url: "http://cbr.ru/scripts/XML_daily.asp"

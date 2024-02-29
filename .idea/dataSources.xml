@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="processing_db@localhost" uuid="463b9717-b4d0-4dbb-a1c0-949483a58aa8">
+    <data-source source="LOCAL" name="processing@localhost" uuid="2cd48551-85aa-4c11-8b39-0b43dabfe02f">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:8095/processing_db</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:8075/processing</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="account-history@localhost" uuid="428e0de4-008d-45bc-8c67-fbf2fb7bec0d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:8075/account-history</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

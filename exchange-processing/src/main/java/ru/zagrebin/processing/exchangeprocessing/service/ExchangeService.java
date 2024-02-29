@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.zagrebin.processing.exchangeprocessing.model.AccountEntity;
+import ru.zagrebin.processing.exchangeprocessing.model.Operation;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -57,16 +58,16 @@ public class ExchangeService {
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public BigDecimal simpleExchange(String uuid, AccountEntity source, AccountEntity target, BigDecimal amount) {
-        accountService.addMoneyToAccount(uuid, source.getId(), amount.negate());
-        accountService.addMoneyToAccount(uuid, target.getId(), amount);
+        accountService.addMoneyToAccount(uuid, source.getId(), target.getId(), Operation.EXCHANGE, amount.negate());
+        accountService.addMoneyToAccount(uuid, target.getId(), source.getId(), Operation.EXCHANGE, amount);
         return amount;
     }
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public BigDecimal exchangeWithMultiply(String uuid, AccountEntity source, AccountEntity target, BigDecimal rate, BigDecimal amount) {
-        accountService.addMoneyToAccount(uuid, source.getId(), amount.negate());
+        accountService.addMoneyToAccount(uuid, source.getId(), target.getId(), Operation.EXCHANGE, amount.negate());
         BigDecimal result = amount.multiply(rate);
-        accountService.addMoneyToAccount(uuid, target.getId(), result);
+        accountService.addMoneyToAccount(uuid, target.getId(), source.getId(), Operation.EXCHANGE, result);
         return result;
     }
 
@@ -74,10 +75,10 @@ public class ExchangeService {
     public BigDecimal exchangeThroughRub(String uuid, AccountEntity source, AccountEntity target,
                                          BigDecimal rateFrom, BigDecimal rateTo, BigDecimal amount
     ) {
-        accountService.addMoneyToAccount(uuid, source.getId(), amount.negate());
+        accountService.addMoneyToAccount(uuid, source.getId(), target.getId(), Operation.EXCHANGE, amount.negate());
         BigDecimal rub = amount.multiply(rateFrom);
         BigDecimal result = rub.divide(rateTo, 4, RoundingMode.HALF_DOWN);
-        accountService.addMoneyToAccount(uuid, target.getId(), result);
+        accountService.addMoneyToAccount(uuid, target.getId(), source.getId(), Operation.EXCHANGE, result);
         return result;
     }
 }

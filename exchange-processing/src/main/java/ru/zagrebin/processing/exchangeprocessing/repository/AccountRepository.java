@@ -1,5 +1,6 @@
 package ru.zagrebin.processing.exchangeprocessing.repository;
 
+
 import org.springframework.data.repository.CrudRepository;
 import ru.zagrebin.processing.exchangeprocessing.model.AccountEntity;
 

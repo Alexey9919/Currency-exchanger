@@ -6,6 +6,7 @@ import ru.zagrebin.processing.exchangeprocessing.dto.ExchangeMoneyDTO;
 import ru.zagrebin.processing.exchangeprocessing.dto.NewAccountDTO;
 import ru.zagrebin.processing.exchangeprocessing.dto.PutAccountMoneyDTO;
 import ru.zagrebin.processing.exchangeprocessing.model.AccountEntity;
+import ru.zagrebin.processing.exchangeprocessing.model.Operation;
 import ru.zagrebin.processing.exchangeprocessing.service.AccountService;
 import ru.zagrebin.processing.exchangeprocessing.service.ExchangeService;
 
@@ -20,7 +21,6 @@ public class ProcessingController {
 
     private final ExchangeService exchangeService;
 
-
     @PostMapping("/account")
     public AccountEntity createAccount(@RequestBody NewAccountDTO account) {
         return accountService.createNewAccount(account);
@@ -28,7 +28,7 @@ public class ProcessingController {
 
     @PutMapping("/account/{id}")
     public AccountEntity putMoney(@PathVariable("id") Long accountId, @RequestBody PutAccountMoneyDTO data) {
-        return accountService.addMoneyToAccount(data.getUid(), accountId, data.getMoney());
+        return accountService.addMoneyToAccount(data.getUid(), accountId, null, Operation.PUT, data.getMoney());
     }
 
     @PutMapping("/exchange/{uid}")

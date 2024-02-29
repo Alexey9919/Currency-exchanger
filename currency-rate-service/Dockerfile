@@ -1,4 +1,4 @@
-FROM amazoncorretto:11-alpine-jdk
+FROM adoptopenjdk/openjdk11:jdk-11.0.8_10-alpine
 ADD target/*.jar app.jar
 
 ENV EUREKA_HOST=localhost
