@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-service" />
+        <module name="notification" />
         <module name="auth-service" />
         <module name="currency-rate-service" />
         <module name="exchange-processing" />
@@ -29,6 +30,7 @@
       <module name="exchange-processing" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="gateway-service (1) (io.slurm.cources)" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="processing" options="-parameters" />
     </option>
   </component>
