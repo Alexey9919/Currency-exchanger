@@ -13,6 +13,7 @@ public class ResolveUserService {
     private final UserInfoRestTemplateFactory restTemplateFactory;
     private final ResourceServerProperties resource;
 
+
     public ResolveUserService(UserInfoRestTemplateFactory restTemplateFactory, ResourceServerProperties resource) {
         this.restTemplateFactory = restTemplateFactory;
         this.resource = resource;
@@ -20,6 +21,7 @@ public class ResolveUserService {
 
     public Long resolveUserId() {
         OAuth2RestTemplate userInfoRestTemplate = restTemplateFactory.getUserInfoRestTemplate();
+
         Map<String, Object> response = userInfoRestTemplate.getForEntity(resource.getUserInfoUri(), Map.class).getBody();
         return Optional.ofNullable(response)
                 .map(r -> r.get("principal"))

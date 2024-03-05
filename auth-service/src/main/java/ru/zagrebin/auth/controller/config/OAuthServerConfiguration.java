@@ -49,6 +49,9 @@ public class OAuthServerConfiguration extends AuthorizationServerConfigurerAdapt
                 .authorizedGrantTypes("password").scopes("system").and()
                 .withClient("history")
                 .secret(passwordEncoder.encode("history123"))
+                .authorizedGrantTypes("password").scopes("system").and()
+                .withClient("notification")
+                .secret(passwordEncoder.encode("notification123"))
                 .authorizedGrantTypes("authorization_code","password","refresh_token")
                 .scopes("system");
 

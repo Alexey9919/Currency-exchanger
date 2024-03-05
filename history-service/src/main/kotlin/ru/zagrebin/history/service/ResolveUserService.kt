@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service
 class ResolveUserService(
     private val restTemplateFactory: UserInfoRestTemplateFactory,
     private val resource: ResourceServerProperties
-) {
+)
+{
+
     fun resolveUserId(): Long? {
         val restTemplate = restTemplateFactory.userInfoRestTemplate
+
         val response = restTemplate.getForEntity(resource.userInfoUri, Map::class.java).body
 
         return response?.let { r  -> r["principal"] as MutableMap<*, *> }
