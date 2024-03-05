@@ -3,6 +3,7 @@ server:
 
 cloud:
   eureka-host: localhost
+  zipkin-host: localhost
   processing-service-url: http://localhost:8090
   currency-service-url: http://localhost:8085
   auth-service-url: http://localhost:9000
@@ -36,7 +37,14 @@ spring:
           predicates:
             - Path=/history/**
 
+  zipkin:
+    baseUrl: http://${cloud.zipkin-host}:9411
+  sleuth:
+    sampler:
+      percentage: 1
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://${cloud.eureka-host}:8761/eureka
+

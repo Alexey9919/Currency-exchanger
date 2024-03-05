@@ -3,6 +3,7 @@ server:
 
 cloud:
   eureka-host: localhost
+  zipkin-host: localhost
 
 spring:
   application:
@@ -15,6 +16,12 @@ spring:
     password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+  zipkin:
+    baseUrl: http://${cloud.zipkin-host}:9411
+    sleuth:
+      sampler:
+        percentage: 1
 
 eureka:
   client:

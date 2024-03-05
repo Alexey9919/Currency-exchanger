@@ -8,10 +8,17 @@ cloud:
   currency-url: http://localhost:8080
   auth-token-url: http://localhost:9000/oauth/check_token
   user-info-url: http://localhost:9000/user
+  zipkin-host: localhost
 
 spring:
   application:
     name: exchange-processing-service
+
+  zipkin:
+    baseUrl: http://${cloud.zipkin-host}:9411
+    sleuth:
+      sampler:
+        percentage: 1
 
   jpa:
     database: POSTGRESQL

@@ -4,10 +4,17 @@ server:
 cloud:
   eureka-host: localhost
   logstash-host: localhost
+  zipkin-host: localhost
 
 spring:
   application:
     name: currency-rate-service
+
+  zipkin:
+    baseUrl: http://${cloud.zipkin-host}:9411
+    sleuth:
+      sampler:
+        percentage: 1
 
 eureka:
   client:
