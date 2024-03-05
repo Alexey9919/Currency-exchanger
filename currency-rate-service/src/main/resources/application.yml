@@ -3,6 +3,7 @@ server:
 
 cloud:
   eureka-host: localhost
+  logstash-host: localhost
 
 spring:
   application:
@@ -13,6 +14,10 @@ eureka:
     enabled: false
     serviceUrl:
       defaultZone: http://${cloud.eureka-host}:8761/eureka
+
+logstash:
+  enabled: false
+  host: ${cloud.logstash-host}
 
 currency:
   client:

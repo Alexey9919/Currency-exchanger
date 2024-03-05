@@ -18,6 +18,8 @@
     <bytecodeTargetLevel>
       <module name="currency" target="11" />
       <module name="gateway-service (1) (io.slurm.cources)" target="11" />
+      <module name="notification-service.main" target="11" />
+      <module name="notification-service.test" target="11" />
       <module name="processing" target="11" />
     </bytecodeTargetLevel>
   </component>
