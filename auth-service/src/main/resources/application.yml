@@ -28,3 +28,11 @@ eureka:
     enabled: false
     serviceUrl:
       defaultZone: http://${cloud.eureka-host}:8761/eureka
+
+management:
+  endpoints:
+    enable-by-default: true
+
+    web:
+      exposure:
+        include: "*"

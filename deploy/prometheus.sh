@@ -1,0 +1,1 @@
+docker run --name prometheus -h prometheus -v "C:\Users\HUAWEI\Desktop\currency-exchanger-backend-app\currency-exchanger-backend-app\deploy\prometheus\prometheus.yml":/etc/prometheus/prometheus.yml:ro -d -p 9090:9090 prom/prometheus

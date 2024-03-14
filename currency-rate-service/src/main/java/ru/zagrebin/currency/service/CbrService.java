@@ -2,8 +2,12 @@ package ru.zagrebin.currency.service;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import ru.zagrebin.currency.client.HttpCurrencyDateRateClient;
 import ru.zagrebin.currency.schema.ValCurs;
@@ -30,18 +34,24 @@ public class CbrService {
 
     private HttpCurrencyDateRateClient client;
 
-    public CbrService(HttpCurrencyDateRateClient client) {
+    private final Timer timer;
+
+    public CbrService(HttpCurrencyDateRateClient client, MeterRegistry meterRegistry) {
+        this.timer = Timer.builder("cbr.request").description("CBR service request").publishPercentiles(1.0, 0.99).register(meterRegistry);
         this.cache = CacheBuilder.newBuilder().build();
         this.client = client;
     }
 
     public BigDecimal requestByCurrencyCode(String code) {
         LOGGER.info("Request service by currency code {}", code);
-        try {
-            return cache.get(LocalDate.now(), this::callAllByCurrentDate).get(code);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
+        return timer.record(() -> {
+            try {
+                return cache.get(LocalDate.now(), this::callAllByCurrentDate).get(code);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
         }
+        );
     }
 
     private Map<String, BigDecimal> callAllByCurrentDate() {
@@ -67,4 +77,6 @@ public class CbrService {
             throw new RuntimeException(e);
         }
     }
+
+
 }

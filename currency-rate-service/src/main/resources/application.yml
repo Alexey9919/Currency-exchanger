@@ -29,3 +29,11 @@ logstash:
 currency:
   client:
     url: "http://cbr.ru/scripts/XML_daily.asp"
+
+management:
+  endpoints:
+    enable-by-default: true
+
+    web:
+      exposure:
+        include: "*"

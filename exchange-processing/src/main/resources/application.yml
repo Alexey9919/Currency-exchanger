@@ -66,3 +66,11 @@ security:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+
+management:
+  endpoints:
+    enable-by-default: true
+
+    web:
+      exposure:
+        include: "*"
